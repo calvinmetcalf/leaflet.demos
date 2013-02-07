@@ -9,12 +9,13 @@ var fills =["rgb(197,27,125)",
 "rgb(127,188,65)",
 "rgb(69, 117, 180)"]
 var baseMaps = [
+    "Stamen.Watercolor",
     "MapQuestOpen.OSM",
     "OpenStreetMap.Mapnik",
     "OpenStreetMap.DE",
     "Esri.WorldImagery",
-    "Stamen.TerrainBackground",
-    "Stamen.Watercolor"
+    "Stamen.TerrainBackground"
+    
 ];
 var overlayMaps
 var lc = L.control.layers.filled(baseMaps, overlayMaps, {map : m});
