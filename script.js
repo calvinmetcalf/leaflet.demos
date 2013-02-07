@@ -1,13 +1,13 @@
 var m = L.map('map').setView([42.2, -71], 8).hash();
 var fills =["rgb(197,27,125)",
 "rgb(222,119,174)",
-"rgb(241,182,218)",
-"rgb(253,224,239)",
-"rgb(247,247,247)",
-"rgb(230,245,208)",
+"rgb(213, 62, 79)",
+"rgb(84, 39, 136)",
+"rgb(247,64,247)",
+"rgb(244, 109, 67)",
 "rgb(184,225,134)",
 "rgb(127,188,65)",
-"rgb(77,146,33)"]
+"rgb(69, 117, 180)"]
 var baseMaps = [
     "MapQuestOpen.OSM",
     "OpenStreetMap.Mapnik",
@@ -35,6 +35,6 @@ p.map(function(r){
 v.map(function(r){
     L.polygon(r.map(function(rr){
         return new L.LatLng(rr[1],rr[0]);
-    }),{stroke:false,fillOpacity:0.5,color:fills[Math.floor((Math.random()*9))]}).addTo(m);
+    }),{stroke:false,fillOpacity:0.7,color:fills[Math.floor((Math.random()*9))]}).addTo(m);
 });
 });

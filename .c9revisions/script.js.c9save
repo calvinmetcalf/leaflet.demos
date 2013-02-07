@@ -16,3 +16,4 @@
 {"ts":1360268629821,"patch":[[{"diffs":[[0,"acity:0."],[-1,"8"],[1,"9"],[0,",color:f"]],"start1":963,"start2":963,"length1":17,"length2":17}]],"length":1035,"saved":false}
 {"ts":1360268643702,"patch":[[{"diffs":[[0,"e:false,"],[-1,"o"],[1,"fillO"],[0,"pacity:0"]],"start1":953,"start2":953,"length1":17,"length2":21},{"diffs":[[0,"acity:0."],[-1,"9"],[1,"5"],[0,",color:f"]],"start1":967,"start2":967,"length1":17,"length2":17}]],"length":1039,"saved":false}
 {"ts":1360268784255,"patch":[[{"diffs":[[0,"\",\n\""],[-1,"fill:"],[0,"rgb("]],"start1":141,"start2":141,"length1":13,"length2":8}]],"length":1034,"saved":false}
+{"ts":1360268919481,"patch":[[{"diffs":[[0,"rgb(247,"],[-1,"247"],[1,"64"],[0,",247)\",\n"]],"start1":145,"start2":145,"length1":19,"length2":18}]],"length":1033,"saved":false}
