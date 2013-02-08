@@ -12,7 +12,7 @@ var baseMaps = [
 
 L.control.layers.filled(baseMaps,{},{map:m})
 function getUrl(){
-    return "bikes.json";//http://calvin.iriscouch.com/bike/_design/bike/_spatiallist/geojson/all?bbox=-77.0196533203125,40.52215098562377,-66.8133544921875,43.55651037504758";
+	return "bikes.json";//http://calvin.iriscouch.com/bike/_design/bike/_spatiallist/geojson/all?bbox=-77.0196533203125,40.52215098562377,-66.8133544921875,43.55651037504758";
 }
 var docs=L.geoJson(undefined,{onEachFeature: onEachFeature,style:style});
 var boxes = L.featureGroup([]);
@@ -88,7 +88,7 @@ function style(doc) {
         return out;
     }
 var db;
-Pouch("bikeboxes",function(err,d){
+Pouch("/bikez",function(err,d){
 	if(!err){	
 		db=d;
 		db.put({"language":"javascript","spatial":{"all":"function(doc){if(doc && doc.geometry){emit(doc.geometry,doc)}}"},"_id":"_design/bike2"},function(){});
@@ -103,7 +103,7 @@ Pouch("bikeboxes",function(err,d){
 		},"json");
 	}
 });
-m.hash();
+m.addHash();
 function updateMap(){
     db.spatial("bike2/all",{"start_range":[m.getBounds().getSouthWest().lng,m.getBounds().getSouthWest().lat],"end_range":[m.getBounds().getNorthEast().lng,m.getBounds().getNorthEast().lat]},function(err,data){
         m.removeLayer(docs);
