@@ -88,7 +88,7 @@ function style(doc) {
         return out;
     }
 var db;
-Pouch("/bikeboxes",function(err,d){
+Pouch("bikeboxes",function(err,d){
 	if(!err){	
 		db=d;
 		db.put({"language":"javascript","spatial":{"all":"function(doc){if(doc && doc.geometry){emit(doc.geometry,doc)}}"},"_id":"_design/bike2"},function(){});
