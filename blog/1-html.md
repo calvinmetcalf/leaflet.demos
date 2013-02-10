@@ -1,6 +1,6 @@
 Leaflet Examples
 ====
-Here are some exmples on how to make some sweet maps in [leaflet](http://leafletjs.com/) and [d3](http://d3js.org)
+Here are some exmples on how to make some sweet maps in [leaflet](http://leafletjs.com/) and [d3](http://d3js.org), the final product is going to be [this map](http://calvinmetcalf.github.com/leaflet.demos) and if you don't care about html you can [skip to the JavaScript](2-js.md).
 
 Lets start from scratch
 ```html
@@ -67,7 +67,7 @@ Next we add leaflet stuff
         <![endif]-->    
    </head>
     <body>
-+        <div id="map"></div>
++        <div id="mapID"></div>
 +        <script type="text/javascript" src="js/leaflet.js"></script>
 +        <script type="text/javascript" src="js/leaflet.css.js"></script>
 +        <script type="text/javascript" src="js/script.js"></script>
@@ -120,7 +120,7 @@ Almost done last few things we need to add are the things specific to this demo,
 +                <a href="https://github.com/calvinmetcalf/leaflet.demos">Fork me on GitHub</a>
 +            </div>
 +        </div>
-        <div id="map"></div>
+        <div id="mapID"></div>
         <script type="text/javascript" src="js/leaflet.js"></script>
         <script type="text/javascript" src="js/leaflet.css.js"></script>
 +        <script type="text/javascript" src="js/leaflet.markercluster.js"></script>
