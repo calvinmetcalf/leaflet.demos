@@ -1,4 +1,4 @@
-var m = L.map('map').setView([42.36, -71.06], 15);
+var m = L.map('mapID').setView([42.36, -71.06], 15);
 var baseMaps = [
 	"Stamen.Watercolor",
 	"OpenStreetMap.Mapnik",
