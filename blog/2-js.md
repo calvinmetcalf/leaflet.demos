@@ -98,3 +98,5 @@ var data={}, layers={}, fills = [
 	"rgb(69, 117, 180)"
 ];
 ```
+
+Data and layers we're going to make public latter hence why we're defining them here, fills is the color scheme we're going to use for our layers. 
