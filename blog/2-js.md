@@ -118,3 +118,5 @@ function dealwithData(json){
     quadtree();
 }
 ``` 
+
+I'm calling a different function for each 
