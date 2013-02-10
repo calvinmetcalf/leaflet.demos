@@ -21,17 +21,17 @@ var data={}, layers={}, fills =[
 	"rgb(69, 117, 180)"
 ];
 d3.json("json/oa.json", dealwithData);
-function dealwithData(json){
-    points(json);
+function dealwithData(oa){
+	data.json= oa.features.map(function(v){
+        return [v.geometry.coordinates[1],v.geometry.coordinates[0]];
+	});
+    points();
     veronoi();
     delaunay();
     clusters();
     quadtree();
 }
-function points(oa){
-    data.json= oa.features.map(function(v){
-        return [v.geometry.coordinates[1],v.geometry.coordinates[0]];
-	});
+function points(){
     layers.points = L.layerGroup(data.json.map(function(v){
     	return L.circleMarker(L.latLng(v),{radius:5,stroke:false,fillOpacity:1,clickable:false,color:fills[Math.floor((Math.random()*9))]})
 	}));
