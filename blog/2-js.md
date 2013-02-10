@@ -199,3 +199,22 @@ This adds the overlay we made at layers.points to the layer control with the cre
 	}));
 	lc.addOverlay(layers.veronoi,"veronoi");
 ```
+
+So you'll see that d3 when given an array of points you get back an array that instead of being made up of [lat,lng] is made up of [[lat1,lng1],[lat2,lng2]...], which oh hey is the exact same format that a leaflet polygon uses, everything else is exactly like the point example,
+
+Next we have the delaunay triangles this is what happens when you connect all of the points to make a series of triangles,  
+
+```js
+    data.delaunay = d3.geom.delaunay(data.json);
+    layers.delaunay = L.layerGroup(data.delaunay.map(function(v){
+		return L.polygon(v,{stroke:false,fillOpacity:0.7,color:fills[Math.floor((Math.random()*9))]})
+	}));
+	lc.addOverlay(layers.delaunay,"delaunay");
+```
+you'll notice that the text is of this is exactly the same as the veronoi one, as it I did find replace on veronoi to delaunay, I could have made this more compact I'll point out, but I find this to be a bit too clever:
+
+```js
+lc.addOverlay(L.layerGroup(d3.geom.delaunay(data.json).map(function(v){
+		return L.polygon(v,{stroke:false,fillOpacity:0.7,color:fills[Math.floor((Math.random()*9))]})
+	}));,"delaunay");
+```
