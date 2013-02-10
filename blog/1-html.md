@@ -60,7 +60,7 @@ Next we add leaflet stuff
 +        <style>
 +            html { height: 100% }
 +            body { height: 100%; margin: 0; padding: 0;}
-+            #map{ height: 100% }
++            #mapID{ height: 100% }
 +        </style>
          <!--[if lte IE 8]>
             <script src="js/ddr-ecma5-min.js"></script>
@@ -104,7 +104,7 @@ Almost done last few things we need to add are the things specific to this demo,
         <style>
             html { height: 100% }
             body { height: 100%; margin: 0; padding: 0;}
-            #map{ height: 100% }
+            #mapID{ height: 100% }
         </style>
          <!--[if lte IE 8]>
             <script src="js/ddr-ecma5-min.js"></script>
