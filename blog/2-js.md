@@ -100,3 +100,21 @@ var data={}, layers={}, fills = [
 ```
 
 Data and layers we're going to make public latter hence why we're defining them here, fills is the color scheme we're going to use for our layers. 
+
+The next thing we need to do is load the json file with our data, which in this case is a geojson file containing the location of 2,000 billboards in MA. Usually I'd just use jQuery or my [AJAX plugin for leaflet](https://github.com/calvinmetcalf/leaflet-ajax) (wow I feel like I'm constantly tooting my own horn in this post), but D3 comes with its own AJAX function for  getting data so instead we do:
+
+```js
+d3.json("json/oa.json", dealwithData);
+```
+
+so that was easy, but what about deal with data? It's a function that takes an an argument the json that was just parsed, in this case the function looks like:
+
+```js
+function dealwithData(json){
+    points(json);
+    veronoi();
+    delaunay();
+    clusters();
+    quadtree();
+}
+``` 
