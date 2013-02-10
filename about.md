@@ -48,6 +48,7 @@ we:
 * Added a shim so we can use older browser features with out having to worry about IE 8, your also going to want to make sure you have a copy of this wonderful library, you may get one from its [github repo](https://github.com/ddrcode/ddr-ecma5)
 * Added analytics, always add analytics, btw if you just copy and paste that code I'd change the id if I were you (or don't I'm always curious about the traffic patterns of strangers sites).
 Next we add leaflet stuff
+
 ```diff
 <!doctype html>
 <html lang="en">
