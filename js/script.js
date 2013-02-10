@@ -19,7 +19,7 @@ var fills =["rgb(197,27,125)",
 var lc = L.control.layers.provided(baseMaps).addTo(m);
 m.addHash({lc:lc});
 var data={},layers={};
-d3.json("oa.json", dealwithData)
+d3.json("json/oa.json", dealwithData)
 function dealwithData(oa){
     data.json= oa.features.map(function(v){
         return [v.geometry.coordinates[1],v.geometry.coordinates[0]];
