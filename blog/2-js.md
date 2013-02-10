@@ -110,8 +110,11 @@ d3.json("json/oa.json", dealwithData);
 so that was easy, but what about deal with data? It's a function that takes an an argument the json that was just parsed, in this case the function looks like:
 
 ```js
-function dealwithData(json){
-    points(json);
+function dealwithData(oa){
+	data.json= oa.features.map(function(v){
+        return [v.geometry.coordinates[1],v.geometry.coordinates[0]];
+	});
+    points();
     veronoi();
     delaunay();
     clusters();
@@ -119,4 +122,80 @@ function dealwithData(json){
 }
 ``` 
 
-I'm calling a different function for each 
+Whats happening here is remember that empty data object I made earlier? we're giving it a json property which is an array made of of arrays with the coordinates switched from [x,y] format used by GeoJSON to the [lat,lng] format that leaflet uses.  Then we call a function for each layer we're going to add. 
+
+```js
+function points(){
+    layers.points = L.layerGroup(data.json.map(function(v){
+    	return L.circleMarker(L.latLng(v),{radius:5,stroke:false,fillOpacity:1,clickable:false,color:fills[Math.floor((Math.random()*9))]})
+	}));
+	lc.addOverlay(layers.points,"points");
+}
+``` 
+
+the points, we are going to break this down a bit first
+
+```js
+    layers.points = L.layerGroup(data.json.map(function(v){
+    	return L.circleMarker(L.latLng(v),{radius:5,stroke:false,fillOpacity:1,clickable:false,color:fills[Math.floor((Math.random()*9))]})
+	}));
+```
+
+this complex mess can be broken down a slightly more readable:
+
+```js
+function makeColor(){
+    var randomNumber = Math.floor((Math.random()*9));
+    return fills[randomNumber];
+}
+function makePoint(v){
+    var opts = {
+        radius: 5,
+        stroke: false,
+        fillOpacity: 1,
+        clickable: false,
+        color: makeColor()
+    }
+    return  L.circleMarker(L.latLng(v),opts);
+} 
+var points = data.json.map(makePoint);
+layers.point=L.layerGroup(points);
+```
+
+I'm only doing it this way so that all the layers are made in an equivalent manner, regularly I'd have just added the GeoJSON layer to the map without iterating through the data twice, something like
+
+```js
+function makeColor(){
+    var randomNumber = Math.floor((Math.random()*9));
+    return fills[randomNumber];
+}
+function makePoint(f,ll){
+    var opts = {
+        radius: 5,
+        stroke: false,
+        fillOpacity: 1,
+        clickable: false,
+        color: makeColor()
+    }
+    return  L.circleMarker(L.latLng(ll),opts);
+} 
+layers.points = L.geoJson(oa,{pointToLayer:makePoint});
+```
+
+But I degrees, I should note that it is a good idea to use circleMarkers instead of regular markers when you have lots of points, not only are the regular markers big and tend to crown a map, browsers often have a problem with displaying the icon 2000+ times. 
+
+Anyway, how ever we do that we then added it as an overlay
+
+```js
+lc.addOverlay(layers.points,"points");
+```
+
+This adds the overlay we made at layers.points to the layer control with the creative title of "points", now were going to start doing the fancy d3 stuff and calculate the veronoi polygons, veronoi polygons are a shape where everything inside the the shape all are closest to the same thing, less confusingly image if you were making a map of closest Starbucks you could make veronoi polygons which would depict the area closest to each Starbucks :
+
+```js
+    data.veronoi = d3.geom.voronoi(data.json);
+    layers.veronoi = L.layerGroup(data.veronoi.map(function(v){
+		return L.polygon(v,{stroke:false,fillOpacity:0.7,color:fills[Math.floor((Math.random()*9))]})
+	}));
+	lc.addOverlay(layers.veronoi,"veronoi");
+```
