@@ -13,7 +13,7 @@ Lets start from scratch
 </html>
 ```
 really can't get any more basic then this, but we're going to need to add just a bit more boiler plate here
-```html
+```dif
 <!doctype html>
 -<html>
 +<html lang="en">
