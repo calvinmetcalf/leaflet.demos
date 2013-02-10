@@ -1,13 +1,16 @@
+(function () {
 var m = L.map('mapID').setView([42.36, -71.06], 15);
 var baseMaps = [
-	"Stamen.Watercolor",
+    "Stamen.Watercolor",
 	"OpenStreetMap.Mapnik",
 	"OpenStreetMap.DE",
 	"Esri.WorldImagery",
 	"MapQuestOpen.OSM"
 ];
-var fills =[
-	"rgb(197,27,125)",
+var lc = L.control.layers.provided(baseMaps,{},{collapsed:false}).addTo(m);
+m.addHash({lc:lc});
+var data={}, layers={}, fills =[
+    "rgb(197,27,125)",
 	"rgb(222,119,174)",
 	"rgb(213, 62, 79)",
 	"rgb(84, 39, 136)",
@@ -17,9 +20,6 @@ var fills =[
 	"rgb(127,188,65)",
 	"rgb(69, 117, 180)"
 ];
-var lc = L.control.layers.provided(baseMaps,{},{collapsed:false}).addTo(m);
-m.addHash({lc:lc});
-var data={},layers={};
 d3.json("json/oa.json", dealwithData)
 function dealwithData(oa){
 	data.json= oa.features.map(function(v){
@@ -51,3 +51,7 @@ function dealwithData(oa){
 	});
 	lc.addOverlay(layers.quadtree,"quadtree");
 }
+window.public = {};
+window.public.data = data;
+window.public.layers = layers;
+}());
