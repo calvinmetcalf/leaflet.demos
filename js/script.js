@@ -20,31 +20,46 @@ var data={}, layers={}, fills =[
 	"rgb(127,188,65)",
 	"rgb(69, 117, 180)"
 ];
-d3.json("json/oa.json", dealwithData)
-function dealwithData(oa){
-	data.json= oa.features.map(function(v){
-		return [v.geometry.coordinates[1],v.geometry.coordinates[0]];
+d3.json("json/oa.json", dealwithData);
+function dealwithData(json){
+    points(json);
+    veronoi();
+    delaunay();
+    clusters();
+    quadtree();
+}
+function points(oa){
+    data.json= oa.features.map(function(v){
+        return [v.geometry.coordinates[1],v.geometry.coordinates[0]];
 	});
-	data.veronoi = d3.geom.voronoi(data.json);
-	data.delaunay = d3.geom.delaunay(data.json);
-	layers.points = L.layerGroup(data.json.map(function(v){
-		return L.circleMarker(L.latLng(v),{radius:5,stroke:false,fillOpacity:1,clickable:false,color:fills[Math.floor((Math.random()*9))]})
+    layers.points = L.layerGroup(data.json.map(function(v){
+    	return L.circleMarker(L.latLng(v),{radius:5,stroke:false,fillOpacity:1,clickable:false,color:fills[Math.floor((Math.random()*9))]})
 	}));
 	lc.addOverlay(layers.points,"points");
-	layers.veronoi = L.layerGroup(data.veronoi.map(function(v){
+}
+function veronoi(){
+    data.veronoi = d3.geom.voronoi(data.json);
+    layers.veronoi = L.layerGroup(data.veronoi.map(function(v){
 		return L.polygon(v,{stroke:false,fillOpacity:0.7,color:fills[Math.floor((Math.random()*9))]})
 	}));
 	lc.addOverlay(layers.veronoi,"veronoi");
-	layers.delaunay = L.layerGroup(data.delaunay.map(function(v){
+}
+function delaunay(){
+    data.delaunay = d3.geom.delaunay(data.json);
+    layers.delaunay = L.layerGroup(data.delaunay.map(function(v){
 		return L.polygon(v,{stroke:false,fillOpacity:0.7,color:fills[Math.floor((Math.random()*9))]})
 	}));
 	lc.addOverlay(layers.delaunay,"delaunay");
-	layers.clusters= new L.MarkerClusterGroup();
+}
+function clusters(){
+    layers.clusters= new L.MarkerClusterGroup();
 	layers.clusters.addLayers(data.json.map(function(v){
 		return L.marker(L.latLng(v));
 	}));
 	lc.addOverlay(layers.clusters,"clusters");
-	data.quadtree = d3.geom.quadtree(data.json.map(function(v){return {x:v[0],y:v[1]};}));
+}
+function quadtree(){
+    data.quadtree = d3.geom.quadtree(data.json.map(function(v){return {x:v[0],y:v[1]};}));
 	layers.quadtree = L.layerGroup();
 	data.quadtree.visit(function(quad, lat1, lng1, lat2, lng2){
 		layers.quadtree.addLayer(L.rectangle([[lat1,lng1],[lat2,lng2]],{fillOpacity:0,weight:1,color:"#000",clickable:false}));
