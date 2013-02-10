@@ -56,4 +56,21 @@ var m = L.map('mapID').setView([42.36, -71.06], 15);
 
 And there we have it, going forward I will not be be going into quite as much detail about the different ways you can do things so keep these in mind.  
 
-Next we set the layers, leaflet doesn't come with a default layer built in like Google Maps or Bing, so we need to set that, for serious projects I usually use [Map Quest Open](http://open.mapquest.com/) but I think doing something slightly more awesome is the order of the day here, so were going to set the default here to be the unbelievable [Stamen Watercolor map](http://maps.stamen.com/watercolor/) with a few more sensible ones available as well. 
+Next we set the layers, leaflet doesn't come with a default layer built in like Google Maps or Bing, so we need to set that, for serious projects I usually use [Map Quest Open](http://open.mapquest.com/) but I think doing something slightly more awesome is the order of the day here, so were going to set the default here to be the unbelievable [Stamen Watercolor map](http://maps.stamen.com/watercolor/) with a few more sensible ones available as well:
+
+```js
+var baseMaps = [
+	"Stamen.Watercolor",
+	"OpenStreetMap.Mapnik",
+	"OpenStreetMap.DE",
+	"Esri.WorldImagery",
+	"MapQuestOpen.OSM"
+];
+var lc = L.control.layers.provided(baseMaps,{},{collapsed:false}).addTo(m);
+m.addHash({lc:lc});
+```
+
+Whats going on here:
+* We made an array of basemap names to pass to the
+* layerControl that we're about to make, the other options are an empty Object, because we don't have any overlays yet and we want to pass an options object as argument 3 because we don't want it collapsed by default, then we add it to the map, we call it lc because the usually the only time we reference it is.
+* When we add it as an option to the Hash we just added to the map, adding a layer control is the way to get it to show the names layers in the url.
