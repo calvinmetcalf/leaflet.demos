@@ -1,3 +1,3 @@
 some demos for leafletjs
 ===
-(detils here)[about.md]
+[detils here](about.md)
