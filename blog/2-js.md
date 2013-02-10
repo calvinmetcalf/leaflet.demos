@@ -54,4 +54,6 @@ But wait longer because any place in leaflet that accepts a latLng is smart enou
 var m = L.map('mapID').setView([42.36, -71.06], 15);
 ```
 
-And there we have it, going forward I will not be be going into quite as much detail about the different ways you can do things so keep these in mind. 
+And there we have it, going forward I will not be be going into quite as much detail about the different ways you can do things so keep these in mind.  
+
+Next we set the layers, leaflet doesn't come with a default layer built in like Google Maps or Bing, so we need to set that, for serious projects I usually use [Map Quest Open](http://open.mapquest.com/) but I think doing something slightly more awesome is the order of the day here, so were going to set the default here to be the unbelievable [Stamen Watercolor map](http://maps.stamen.com/watercolor/) with a few more sensible ones available as well. 
