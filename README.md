@@ -1,3 +1,3 @@
 some demos for leafletjs
 ===
-[detils here](about.md)
+some demos, [details are here](blog/1-html.md)
