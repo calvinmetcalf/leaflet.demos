@@ -3,7 +3,15 @@ The JS
 
 Here we are going to be getting into the JavaScript which will make [this map](http://calvinmetcalf.github.com/leaflet.demos), this is all the code that was in the 'script.js' file in the [previous post](1-html.md).
 
-First thing we do is:
+First thing we do is wrap it all up in a closure:
+
+```js
+(function () {
+//code goes here
+}());
+```
+
+Polluting the global namespace is a party foul and you shouldn't do it, I tend not to count the closure when doing my indents if for no other reason then I usually only put the closure in at the end after I've debugged it so I don't feel like adding an extra tab to each line, with that out of the way we do:
 
 ```js
 var m = L.map('mapID').setView([42.36, -71.06], 15);
@@ -25,7 +33,7 @@ I always use the second method.  All objects almost always take a options object
 
 ```js
 var m = L.map('mapID', {
-    center: new L.LatLng(42.36, -71.06),
+	center: new L.LatLng(42.36, -71.06),
     zoom: 15
 });
 ```
@@ -74,3 +82,19 @@ Whats going on here:
 * We made an array of basemap names to pass to the
 * layerControl that we're about to make, the other options are an empty Object, because we don't have any overlays yet and we want to pass an options object as argument 3 because we don't want it collapsed by default, then we add it to the map, we call it lc because the usually the only time we reference it is.
 * When we add it as an option to the Hash we just added to the map, adding a layer control is the way to get it to show the names layers in the url.
+
+At this point you have a working map, now some stuff for the custom maps we're making:
+
+```js
+var data={}, layers={}, fills = [
+	"rgb(197,27,125)",
+	"rgb(222,119,174)",
+	"rgb(213, 62, 79)",
+	"rgb(84, 39, 136)",
+	"rgb(247,64,247)",
+	"rgb(244, 109, 67)",
+	"rgb(184,225,134)",
+	"rgb(127,188,65)",
+	"rgb(69, 117, 180)"
+];
+```
