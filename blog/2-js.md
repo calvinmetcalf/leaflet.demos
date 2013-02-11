@@ -230,7 +230,7 @@ next I added marker clusters, so this isn't d3 but it seemed to fit
 
 This is pretty straight forward we just create a MarkerClusterGroup and add an array of of markers.  Since this is a plugin and not part of core we can't be sure there is a factory function for the MarkerClusterGroup hence why we use the uppercase version. 
 
-Lastly we make a quadtree and then illistrate it on the map.
+Lastly we make a quadtree and then illustrate it on the map.
 
 ```js
   data.quadtree = d3.geom.quadtree(data.json.map(function(v){return {x:v[0],y:v[1]};}));
@@ -240,3 +240,19 @@ Lastly we make a quadtree and then illistrate it on the map.
 	});
 	lc.addOverlay(layers.quadtree,"quadtree");
 ```
+
+But wait, whats a quad tree, so a quad tree is a form of spatial index where each node has 4 children. to put it in other terms. 
+
+You divide you map into quarters then check how many points are in each quarter, if a quarter has more points than some minimum you set (lets say 3) then you repeat on that quarter etc. You can now do bounding box and other types of queries much more easily because you've stored the data in terms of location.  
+
+So the details of the d3 implementation. It takes an array made up of {x:num,y:num} Objects, and returns a quad tree object, we do that here:
+
+```js
+data.quadtree = d3.geom.quadtree(data.json.map(function(v){
+    return {x:v[0],y:v[1]};
+}));
+```
+
+The quadtree object then has method 'visit' which takes a function, that function is called once for each node with the arguments node, lat1, lng1, lat2, lng2, if it returns true it doesn't visit that nodes children, if it returns false (returning nothing is false).
+
+Back to our original example, if we had a 4x4 map, 
