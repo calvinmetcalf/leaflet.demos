@@ -216,5 +216,16 @@ you'll notice that the text is of this is exactly the same as the veronoi one, a
 ```js
 lc.addOverlay(L.layerGroup(d3.geom.delaunay(data.json).map(function(v){
 		return L.polygon(v,{stroke:false,fillOpacity:0.7,color:fills[Math.floor((Math.random()*9))]})
-	}));,"delaunay");
+	})), "delaunay");
 ```
+next I added marker clusters, so this isn't d3 but it seemed to fit
+
+```js
+    layers.clusters= new L.MarkerClusterGroup();
+    layers.clusters.addLayers(data.json.map(function(v){
+		return L.marker(L.latLng(v));
+	}));
+    lc.addOverlay(layers.clusters,"clusters");
+```
+
+This is pretty straight forward we just create a MarkerClusterGroup and add an array of of markers.  Since this is a plugin and not part of core we can't be sure there is a factory function for the MarkerClusterGroup hence why we use the uppercase version. 
