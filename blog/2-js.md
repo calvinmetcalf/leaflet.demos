@@ -256,3 +256,13 @@ data.quadtree = d3.geom.quadtree(data.json.map(function(v){
 The quadtree object then has method 'visit' which takes a function, that function is called once for each node with the arguments node, lat1, lng1, lat2, lng2, if it returns true it doesn't visit that nodes children, if it returns false (returning nothing is false).
 
 Back to our original example, if we had a 4x4 map, 
+
+![4x4 quadtree](quadtree.png)
+
+the first iteration would return 
+
+![4x4 quadtree](quadtree(1).png)
+
+and the second 
+
+![4x4 quadtree](quadtree(2).png)
