@@ -221,7 +221,7 @@ lc.addOverlay(L.layerGroup(d3.geom.delaunay(data.json).map(function(v){
 next I added marker clusters, so this isn't d3 but it seemed to fit
 
 ```js
-    layers.clusters= new L.MarkerClusterGroup();
+    layers.clusters = new L.MarkerClusterGroup();
     layers.clusters.addLayers(data.json.map(function(v){
 		return L.marker(L.latLng(v));
 	}));
@@ -229,3 +229,14 @@ next I added marker clusters, so this isn't d3 but it seemed to fit
 ```
 
 This is pretty straight forward we just create a MarkerClusterGroup and add an array of of markers.  Since this is a plugin and not part of core we can't be sure there is a factory function for the MarkerClusterGroup hence why we use the uppercase version. 
+
+Lastly we make a quadtree and then illistrate it on the map.
+
+```js
+  data.quadtree = d3.geom.quadtree(data.json.map(function(v){return {x:v[0],y:v[1]};}));
+	layers.quadtree = L.layerGroup();
+	data.quadtree.visit(function(quad, lat1, lng1, lat2, lng2){
+		layers.quadtree.addLayer(L.rectangle([[lat1,lng1],[lat2,lng2]],{fillOpacity:0,weight:1,color:"#000",clickable:false}));
+	});
+	lc.addOverlay(layers.quadtree,"quadtree");
+```
