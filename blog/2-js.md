@@ -259,10 +259,28 @@ Back to our original example, if we had a 4x4 map,
 
 ![4x4 quadtree](quadtree.png)
 
-the first iteration would return 
+the function would be called with (node, 0,0,4,4) then the first iteration would return 
 
-![4x4 quadtree](quadtree(1).png)
+![4x4 quadtree](quadtree-1.png)
 
-and the second 
+and it would be called with 
+(node, 0,0,2,2)
+(node, 0,2,2,4)
+(node, 2,0,4,2)
+(node, 2,2,4,4)
 
-![4x4 quadtree](quadtree(2).png)
+![4x4 quadtree](quadtree-2.png)
+
+then notice that the upper right quadrant hasn't been called again this is because it is at the minimum, the function would then only be called again on boxes that have things in it. 
+
+Usually this function is used to limit your search if you know your search is near 3,3 you can skip all the boxes that don't include that point which cuts down your search tremendously, instead here where using each of those function calls to create a rectangle and adding it to the map, voila. 
+
+The very last thing we do is something special:
+
+```js
+window.public = {};
+window.public.data = data;
+window.public.layers = layers;
+```
+
+we create an object called public and and attach it to the window, we then put the layers and data in it. I don't normally do this, but today I made an exception so you can open the developer tools (chrome ctr+shift+i, IE f12, firefox ctrl+shift+k) and look at this stuff. Feel free to [drop me a line on twitter](https://twitter.com/CWMma) or [comment on hacker news](http://news.ycombinator.com/item?id=5204744)  Now [go play with the map we made.](http://calvinmetcalf.github.com/leaflet.demos)
