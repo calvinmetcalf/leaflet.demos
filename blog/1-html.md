@@ -146,4 +146,6 @@ What did add
 * [Marker clusters](https://github.com/Leaflet/Leaflet.markercluster) probably my favorite plugin ever, it only has a small custimization to take advantage of the [leaflet.css](https://github.com/calvinmetcalf/leaflet.css) plugin we already have on the page so that it adds its own css, if you want that version you can [grab it here](https://raw.github.com/calvinmetcalf/leaflet.demos/gh-pages/js/leaflet.markercluster.js), remember requires [leaflet.css](https://github.com/calvinmetcalf/leaflet.css).
 * [Providers](https://github.com/calvinmetcalf/leaflet-providers) this is my custom fork of [@seelmann's](https://github.com/seelmann) [excellence plugin](https://github.com/seelmann/leaflet-providers). It fixes some urls and allows you to pre-populate the layer control. 
 * [Hash](https://github.com/calvinmetcalf/leaflet-hash) this is my rewrite from scratch in CoffeeScript of [@mlevans'](https://github.com/mlevans) [fantastic repo of the same name](https://github.com/mlevans/leaflet-hash) adds baselayers to the now customizable hash and causes the back button to work better. 
-* [d3](d3) this is one of the reasons why you are here.
+* [d3](http://d3js.org) this is one of the reasons why you are here.
+
+[onto the javascript](https://github.com/calvinmetcalf/leaflet.demos/blob/gh-pages/blog/2-js.md)
