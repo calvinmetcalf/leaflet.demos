@@ -17,6 +17,21 @@
     <!--[if IE]>
         <link rel="stylesheet" href="css/gh-fork-ribbon.ie.css" />
     <![endif]-->
+        <link rel="stylesheet" href="css/colorbrewer.css" />
+        <style>
+        	.town { 
+	stroke-width : 0;
+	fill: #000;
+	fill-opacity: .6;
+	stroke: #fff; 
+}
+
+.town:hover {
+  fill: rgb(109, 28, 28);
+  fill-opacity: .7;
+  cursor:pointer;
+}
+        </style>
     </head>
     <body>
         <div class="github-fork-ribbon-wrapper left">
@@ -31,6 +46,8 @@
         <script type="text/javascript" src="js/leaflet.providers.js"></script>
         <script type="text/javascript" src="js/leaflet.hash.js"></script>
         <script type="text/javascript" src="js/d3.v3.js"></script>
+        <script type="text/javascript" src="js/topojson.v0.js"></script>
+        <script type="text/javascript" src="js/leaflet.d3.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript">
             var _gaq = _gaq || [];
