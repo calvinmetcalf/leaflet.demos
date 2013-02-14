@@ -72,11 +72,11 @@ layers.svg=L.d3("json/ma.topo.json",{
 	topojson:"TOWNS",
 	svgClass : "Spectral",
 	pathClass:function(d) {
-		return "town q" + (10-layers.svg.quintile(d.properties.pop/layers.svg._path.area(d)))+"-11";
+		return "town q" + (10-layers.svg.quintile(d.properties.pop/layers.svg.path.area(d)))+"-11";
 	},
 	before: function(data){
 		var _this = this;
-		this.quintile=d3.scale.quantile().domain(data.geometries.map(function(d){return d.properties.pop/_this._path.area(d);})).range(d3.range(11));
+		this.quintile=d3.scale.quantile().domain(data.geometries.map(function(d){return d.properties.pop/_this.path.area(d);})).range(d3.range(11));
 	}
 });
 layers.svg.bindPopup(function(p){
