@@ -283,4 +283,6 @@ window.public.data = data;
 window.public.layers = layers;
 ```
 
-we create an object called public and and attach it to the window, we then put the layers and data in it. I don't normally do this, but today I made an exception so you can open the developer tools (chrome ctr+shift+i, IE f12, firefox ctrl+shift+k) and look at this stuff. Feel free to [drop me a line on twitter](https://twitter.com/CWMma) or [comment on hacker news](http://news.ycombinator.com/item?id=5204744)  Now [go play with the map we made.](http://calvinmetcalf.github.com/leaflet.demos)
+we create an object called public and and attach it to the window, we then put the layers and data in it. I don't normally do this, but today I made an exception so you can open the developer tools (chrome ctr+shift+i, IE f12, firefox ctrl+shift+k) and look at this stuff. Feel free to [drop me a line on twitter](https://twitter.com/CWMma).  Now [go play with the map we made.](http://calvinmetcalf.github.com/leaflet.demos).
+
+Edit, I also added a population density layer, details of that are in [its own repo](https://github.com/calvinmetcalf/leaflet.d3).
